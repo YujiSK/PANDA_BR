@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 10-Jun-2022 às 16:50
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 7.4.27
+-- ホスト: 127.0.0.1
+-- 生成日時: 2023-12-29 18:23:32
+-- サーバのバージョン： 10.4.28-MariaDB
+-- PHP のバージョン: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `db_panda`
+-- データベース: `db_panda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `avaliacoes`
+-- テーブルの構造 `avaliacoes`
 --
 
 CREATE TABLE `avaliacoes` (
@@ -37,10 +37,10 @@ CREATE TABLE `avaliacoes` (
   `data_marcada` datetime NOT NULL DEFAULT current_timestamp(),
   `tipo` int(1) NOT NULL COMMENT '1:turma\r\n2:individual',
   `situation` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `avaliacoes`
+-- テーブルのデータのダンプ `avaliacoes`
 --
 
 INSERT INTO `avaliacoes` (`id_avaliacao`, `fk_id_destino`, `fk_id_professor`, `name_avaliacao`, `detalhe`, `data_criada`, `data_marcada`, `tipo`, `situation`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `avaliacoes` (`id_avaliacao`, `fk_id_destino`, `fk_id_professor`, `n
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `avaliacoes_logs`
+-- テーブルの構造 `avaliacoes_logs`
 --
 
 CREATE TABLE `avaliacoes_logs` (
@@ -66,10 +66,10 @@ CREATE TABLE `avaliacoes_logs` (
   `aprovado` int(11) NOT NULL,
   `falta` int(11) NOT NULL,
   `data_modificada` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `avaliacoes_logs`
+-- テーブルのデータのダンプ `avaliacoes_logs`
 --
 
 INSERT INTO `avaliacoes_logs` (`id_avaliacao_log`, `fk_id_avaliacao`, `fk_id_user`, `aprovado`, `falta`, `data_modificada`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `avaliacoes_logs` (`id_avaliacao_log`, `fk_id_avaliacao`, `fk_id_use
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `presenca`
+-- テーブルの構造 `presenca`
 --
 
 CREATE TABLE `presenca` (
@@ -87,10 +87,10 @@ CREATE TABLE `presenca` (
   `fk_id_turma` int(11) NOT NULL DEFAULT 1,
   `date` date NOT NULL,
   `presenca` int(11) NOT NULL DEFAULT 0 COMMENT '0-falta 1-presente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Extraindo dados da tabela `presenca`
+-- テーブルのデータのダンプ `presenca`
 --
 
 INSERT INTO `presenca` (`id_presenca`, `fk_id_user`, `fk_id_turma`, `date`, `presenca`) VALUES
@@ -119,7 +119,7 @@ INSERT INTO `presenca` (`id_presenca`, `fk_id_user`, `fk_id_turma`, `date`, `pre
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `recados`
+-- テーブルの構造 `recados`
 --
 
 CREATE TABLE `recados` (
@@ -131,26 +131,22 @@ CREATE TABLE `recados` (
   `data_criada` datetime NOT NULL DEFAULT current_timestamp(),
   `data_marcada` datetime DEFAULT NULL,
   `situation` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `recados`
+-- テーブルのデータのダンプ `recados`
 --
 
 INSERT INTO `recados` (`id_recado`, `fk_id_professor`, `name_recado`, `mensagem`, `tipo`, `data_criada`, `data_marcada`, `situation`) VALUES
 (1, 3, 'Sobre a aula do dia 23/09/2022', 'Para próxima aula, tragam a autorização dos responsáveis. Será necessário para participação da atividade extra.', 1, '2021-05-04 04:05:51', '2021-09-23 00:00:00', 1),
 (2, 6, 'Feriado de Páscoa', 'Próxima semana não teremos aula. Feliz Páscoa!', 1, '2022-01-12 04:06:08', '2022-02-19 00:00:00', 1),
 (3, 9, 'Sobre a comemoração', 'Boa tarde responsáveis, nós junto com os alunos decidimos realizar uma celebração da promoção', 1, '2022-03-20 04:06:17', '2022-03-25 00:00:00', 1),
-(4, 0, '', '', 0, '2022-06-08 15:48:23', '0000-00-00 00:00:00', 1),
-(5, 0, '', '', 0, '2022-06-08 15:48:23', '0000-00-00 00:00:00', 1),
-(6, 0, '', '', 0, '2022-06-08 15:48:23', '0000-00-00 00:00:00', 1),
-(7, 0, '', '', 0, '2022-06-08 15:48:23', '0000-00-00 00:00:00', 1),
 (8, 3, 'Recado sobre próximas aulas', 'Não terá aula', 1, '2022-06-08 16:49:49', '2022-06-15 00:00:00', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `turmas`
+-- テーブルの構造 `turmas`
 --
 
 CREATE TABLE `turmas` (
@@ -160,10 +156,10 @@ CREATE TABLE `turmas` (
   `imagem_turma` text DEFAULT NULL,
   `detalhe` text DEFAULT NULL,
   `situation` int(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `turmas`
+-- テーブルのデータのダンプ `turmas`
 --
 
 INSERT INTO `turmas` (`id_turma`, `fk_id_professor`, `name_turma`, `imagem_turma`, `detalhe`, `situation`) VALUES
@@ -174,17 +170,17 @@ INSERT INTO `turmas` (`id_turma`, `fk_id_professor`, `name_turma`, `imagem_turma
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `turma_alunos`
+-- テーブルの構造 `turma_alunos`
 --
 
 CREATE TABLE `turma_alunos` (
   `id_aluno_t` int(11) NOT NULL,
   `fk_id_user` int(11) NOT NULL,
   `fk_id_turma` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `turma_alunos`
+-- テーブルのデータのダンプ `turma_alunos`
 --
 
 INSERT INTO `turma_alunos` (`id_aluno_t`, `fk_id_user`, `fk_id_turma`) VALUES
@@ -197,7 +193,7 @@ INSERT INTO `turma_alunos` (`id_aluno_t`, `fk_id_user`, `fk_id_turma`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `user`
+-- テーブルの構造 `user`
 --
 
 CREATE TABLE `user` (
@@ -211,10 +207,10 @@ CREATE TABLE `user` (
   `phone` varchar(11) NOT NULL,
   `nivel` int(1) NOT NULL COMMENT '0-admin\r\n1-professor\r\n2-aluno',
   `situation` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `user`
+-- テーブルのデータのダンプ `user`
 --
 
 INSERT INTO `user` (`id_user`, `name`, `surname`, `email`, `password`, `birthday`, `gender`, `phone`, `nivel`, `situation`) VALUES
@@ -229,93 +225,93 @@ INSERT INTO `user` (`id_user`, `name`, `surname`, `email`, `password`, `birthday
 (15, 'Maria', 'Borges', 'aluno5@gmail.com', '202cb962ac59075b964b07152d234b70', '29 / 08 / 2009', 'f', '(67) 99135 ', 0, 1);
 
 --
--- Índices para tabelas despejadas
+-- ダンプしたテーブルのインデックス
 --
 
 --
--- Índices para tabela `avaliacoes`
+-- テーブルのインデックス `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`id_avaliacao`);
 
 --
--- Índices para tabela `avaliacoes_logs`
+-- テーブルのインデックス `avaliacoes_logs`
 --
 ALTER TABLE `avaliacoes_logs`
   ADD PRIMARY KEY (`id_avaliacao_log`);
 
 --
--- Índices para tabela `presenca`
+-- テーブルのインデックス `presenca`
 --
 ALTER TABLE `presenca`
   ADD PRIMARY KEY (`id_presenca`);
 
 --
--- Índices para tabela `recados`
+-- テーブルのインデックス `recados`
 --
 ALTER TABLE `recados`
   ADD PRIMARY KEY (`id_recado`);
 
 --
--- Índices para tabela `turmas`
+-- テーブルのインデックス `turmas`
 --
 ALTER TABLE `turmas`
   ADD PRIMARY KEY (`id_turma`);
 
 --
--- Índices para tabela `turma_alunos`
+-- テーブルのインデックス `turma_alunos`
 --
 ALTER TABLE `turma_alunos`
   ADD PRIMARY KEY (`id_aluno_t`);
 
 --
--- Índices para tabela `user`
+-- テーブルのインデックス `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- ダンプしたテーブルの AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT de tabela `avaliacoes`
+-- テーブルの AUTO_INCREMENT `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   MODIFY `id_avaliacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT de tabela `avaliacoes_logs`
+-- テーブルの AUTO_INCREMENT `avaliacoes_logs`
 --
 ALTER TABLE `avaliacoes_logs`
   MODIFY `id_avaliacao_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `presenca`
+-- テーブルの AUTO_INCREMENT `presenca`
 --
 ALTER TABLE `presenca`
   MODIFY `id_presenca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT de tabela `recados`
+-- テーブルの AUTO_INCREMENT `recados`
 --
 ALTER TABLE `recados`
   MODIFY `id_recado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de tabela `turmas`
+-- テーブルの AUTO_INCREMENT `turmas`
 --
 ALTER TABLE `turmas`
   MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de tabela `turma_alunos`
+-- テーブルの AUTO_INCREMENT `turma_alunos`
 --
 ALTER TABLE `turma_alunos`
   MODIFY `id_aluno_t` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT de tabela `user`
+-- テーブルの AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
